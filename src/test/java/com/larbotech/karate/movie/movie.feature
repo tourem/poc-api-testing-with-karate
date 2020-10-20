@@ -44,3 +44,18 @@ Feature: working with movies
     When method get
     Then status 200
     And match response.actors contains { firstName: 'JC', lastName: 'VD' }
+
+  Scenario Outline: Create multiple movies
+
+    Given path 'movies'
+    And request { "id": '<id>', "title": '<title>'}
+    When method POST
+    Then status 201
+    And match $ == {id: '<id>', "title": '<title>', "actors":[]}
+
+    Examples:
+
+      | id | title   |
+      | dd892255-907a-4e7f-8ab0-215f9f2b2a51  | Amkoulel enfant peul  |
+      | dd892255-907a-4e7f-8ab0-215f9f2b2a52  | Go in action |
+      | dd892255-907a-4e7f-8ab0-215f9f2b2a53  | Clean code   |

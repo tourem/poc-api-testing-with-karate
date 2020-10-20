@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 @Repository
 public class MovieRepository {
@@ -24,7 +25,9 @@ public class MovieRepository {
   }
 
   public Movie add(Movie movie) {
-    String id = UUID.randomUUID().toString();
+    String id = movie.getId();
+    if (StringUtils.isEmpty(id))
+      id = UUID.randomUUID().toString();
     Movie persistedMovie = movie.copy(id);
     movies.put(id, persistedMovie);
     return persistedMovie;
