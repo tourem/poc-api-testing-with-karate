@@ -25,6 +25,7 @@
 		<junit-jupiter.version>5.4.0</junit-jupiter.version>
 		<mockito.version>3.2.4</mockito.version>
 		<karate-apache.version>0.9.6</karate-apache.version>
+		<version.maven-cucumber-reporting>3.4.0</version.maven-cucumber-reporting>
 	</properties>
 
 	<dependencies>
@@ -79,6 +80,13 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.16</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>3.8.0</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
