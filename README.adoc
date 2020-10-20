@@ -1,0 +1,9 @@
+= Api testing with karate
+
+== Run Karate test
+
+[source]
+----
+./mvnw verify
+----
+
