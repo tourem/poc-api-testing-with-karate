@@ -2,9 +2,12 @@ Feature: working with movies
 
   Background:
     * url baseUrl
+    * def dataGenerator = Java.type('com.larbotech.karate.util.DataGeneratorUtils')
+    * def uuidGenerator = Java.type('java.util.UUID')
 
   Scenario: create a movie and retrieve it
-
+    * def uuid1 = dataGenerator.uuid()
+    * def uuid2 = uuidGenerator.randomUUID().toString()
     Given path 'movies'
     And request { title: 'Karate Kid' }
     When method post
@@ -18,6 +21,14 @@ Feature: working with movies
     And match response contains { title: 'Karate Kid' }
 
     Given path 'movies', '42'
+    When method get
+    Then status 404
+
+    Given path 'movies', uuid1
+    When method get
+    Then status 404
+
+    Given path 'movies', uuid2
     When method get
     Then status 404
 
